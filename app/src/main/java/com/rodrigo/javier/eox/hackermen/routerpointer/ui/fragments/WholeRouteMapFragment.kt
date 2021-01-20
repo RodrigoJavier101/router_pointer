@@ -120,14 +120,20 @@ open class WholeRouteMapFragment : Fragment(), ListenerWholeRoute {
             btn.setOnClickListener {
                 deliveryPoint.street = bindingDialog!!.inputAddress.text.toString()
                 deliveryPoint.phone = bindingDialog!!.inputPhone.text.toString()
-                CoroutineScope(Dispatchers.IO).launch {
-                    saveInDDBB(deliveryPoint)
+                if (deliveryPoint.street.isNullOrBlank()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "los campos no deben estar vacíos.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        saveInDDBB(deliveryPoint)
+                        dialog.dismiss()
+                    }
                 }
-
-                dialog.dismiss()
             }
             dialog.setCancelable(false)
-
             dialog.setContentView(view.root)
             dialog.show()
 
