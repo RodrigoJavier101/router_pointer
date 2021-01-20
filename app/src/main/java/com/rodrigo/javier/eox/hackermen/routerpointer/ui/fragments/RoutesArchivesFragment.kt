@@ -1,4 +1,6 @@
 package com.rodrigo.javier.eox.hackermen.routerpointer.ui.fragments
 
-class RoutesArchivesFragment {
+import androidx.fragment.app.Fragment
+
+class RoutesArchivesFragment : Fragment() {
 }

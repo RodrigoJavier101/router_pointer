@@ -3,31 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainListingFragment">
+    app:startDestination="@id/wholeRouteMapFragment">
     <fragment
-        android:id="@+id/mainListingFragment"
-        android:name="com.example.anchorbooks_rodrigojaviergarridodagle.ui.fragments.MainListingFragment"
-        android:label="MainListingFragment">
+        android:id="@+id/wholeRouteMapFragment"
+        android:name="com.rodrigo.javier.eox.hackermen.routerpointer.ui.fragments.WholeRouteMapFragment"
+        android:label="WholeRouteMapFragment">
         <action
-            android:id="@+id/next_action"
-            app:destination="@id/bookSavedFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            android:id="@+id/action_wholeRouteMapFragment_to_routesArchivesFragment2"
+            app:destination="@id/routesArchivesFragment" />
     </fragment>
-
-
     <fragment
-        android:id="@+id/bookSavedFragment"
-        android:name="com.example.anchorbooks_rodrigojaviergarridodagle.ui.fragments.BookSavedFragment"
-        android:label="BookSavedFragment">
-        <action
-            android:id="@+id/next_action"
-            app:destination="@id/mainListingFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
+        android:id="@+id/routesArchivesFragment"
+        android:name="com.rodrigo.javier.eox.hackermen.routerpointer.ui.fragments.RoutesArchivesFragment"
+        android:label="RoutesArchivesFragment" />
 </navigation>
