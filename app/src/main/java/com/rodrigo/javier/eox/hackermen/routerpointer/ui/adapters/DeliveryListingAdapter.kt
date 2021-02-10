@@ -19,7 +19,6 @@ class DeliveryListingAdapter(
     private var listener: ListenerWholeRoute
 ) : RecyclerView.Adapter<DeliveryListingAdapter.BaseViewHolder<*>>() {
 
-
     abstract class BaseViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemView) {
         abstract fun bind(item: T)
     }
@@ -28,7 +27,7 @@ class DeliveryListingAdapter(
         BaseViewHolder<DeliveryPoint>(binding.root) {
 
         override fun bind(item: DeliveryPoint) = with(binding) {
-            this.textViewAddress.text = item.street.toString()
+            this.textViewAddress.text = item.street.toString().toUpperCase()
         }
     }
 
@@ -50,12 +49,10 @@ class DeliveryListingAdapter(
         binding.imageViewPhonecall.setOnLongClickListener {
             val position = holder.adapterPosition.takeIf { it != RecyclerView.NO_POSITION }
                 ?: return@setOnLongClickListener true
-            YoYo.with(Techniques.Flash)
+            YoYo.with(Techniques.Shake)
                 .duration(450)
-                .repeat(1)
+                .repeat(5)
                 .playOn(binding.carviewItem)
-
-
 
             this.listener.viewTouchedLong(list[position], position)
 

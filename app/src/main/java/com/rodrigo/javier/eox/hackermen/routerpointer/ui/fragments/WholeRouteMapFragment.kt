@@ -149,7 +149,7 @@ open class WholeRouteMapFragment : Fragment(), ListenerWholeRoute {
         Toast.makeText(
             requireContext(),
             "Short",
-            Toast.LENGTH_LONG
+            Toast.LENGTH_SHORT
         ).show()
     }
 
@@ -158,6 +158,7 @@ open class WholeRouteMapFragment : Fragment(), ListenerWholeRoute {
     }
 
     private fun generatePhoneCall() {
+//        val bind : Ph
         val dialogView = layoutInflater
             .inflate(R.layout.phonecall_dialog, null)
 
