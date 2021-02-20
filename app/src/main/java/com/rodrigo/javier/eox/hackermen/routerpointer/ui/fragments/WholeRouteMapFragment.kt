@@ -2,7 +2,6 @@ package com.rodrigo.javier.eox.hackermen.routerpointer.ui.fragments
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,13 +19,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.rodrigo.javier.eox.hackermen.routerpointer.R
 import com.rodrigo.javier.eox.hackermen.routerpointer.databinding.DialogLayoutBinding
 import com.rodrigo.javier.eox.hackermen.routerpointer.databinding.FragmentWholeRouteMapBinding
-import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.DeliveryPoint
+import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.DeliveryPointEntity
 import com.rodrigo.javier.eox.hackermen.routerpointer.ui.adapters.DeliveryListingAdapter
 import com.rodrigo.javier.eox.hackermen.routerpointer.utilities.interfaces.ListenerWholeRoute
 import com.rodrigo.javier.eox.hackermen.routerpointer.viewmodels.WholeRouteViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
+
 
 open class WholeRouteMapFragment : Fragment(), ListenerWholeRoute {
     private var _binding: FragmentWholeRouteMapBinding? = null
@@ -115,7 +116,7 @@ open class WholeRouteMapFragment : Fragment(), ListenerWholeRoute {
             close.setOnClickListener {
                 dialog.dismiss()
             }
-            var deliveryPoint = DeliveryPoint()
+            var deliveryPoint = DeliveryPointEntity()
 
             btn.setOnClickListener {
                 deliveryPoint.street = bindingDialog!!.inputAddress.text.toString()
@@ -141,11 +142,11 @@ open class WholeRouteMapFragment : Fragment(), ListenerWholeRoute {
 
     }
 
-    private suspend fun saveInDDBB(deliveryPoint: DeliveryPoint) {
-        model.insertInDatabaseUsingViewModel(deliveryPoint)
+    private suspend fun saveInDDBB(deliveryPointEntity: DeliveryPointEntity) {
+        model.insertInDatabaseUsingViewModel(deliveryPointEntity)
     }
 
-    override fun viewTouchedShort(deliveryPoint: DeliveryPoint, position: Int) {
+    override fun viewTouchedShort(deliveryPointEntity: DeliveryPointEntity, position: Int) {
         Toast.makeText(
             requireContext(),
             "Short",
@@ -153,7 +154,7 @@ open class WholeRouteMapFragment : Fragment(), ListenerWholeRoute {
         ).show()
     }
 
-    override fun viewTouchedLong(deliveryPoint: DeliveryPoint, id: Int) {
+    override fun viewTouchedLong(deliveryPointEntity: DeliveryPointEntity, id: Int) {
         generatePhoneCall()
     }
 

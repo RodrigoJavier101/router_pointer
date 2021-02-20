@@ -1,15 +1,15 @@
 package com.rodrigo.javier.eox.hackermen.routerpointer.utilities.interfaces
 
-import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.DeliveryPoint
+import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.DeliveryPointEntity
 
 interface ListenerWholeRoute {
     fun viewTouchedShort(
-        deliveryPoint: DeliveryPoint,
+        deliveryPointEntity: DeliveryPointEntity,
         position: Int
     )
 
     fun viewTouchedLong(
-        deliveryPoint: DeliveryPoint,
+        deliveryPointEntity: DeliveryPointEntity,
         id: Int
     )
 

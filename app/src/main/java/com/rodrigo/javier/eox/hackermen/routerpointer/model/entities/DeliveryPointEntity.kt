@@ -2,10 +2,10 @@ package com.rodrigo.javier.eox.hackermen.routerpointer.model.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.rodrigo.javier.eox.hackermen.routerpointer.utilities.StringStatic
 
-
-@Entity(tableName = "delivery_point_table")
-data class DeliveryPoint(
+@Entity(tableName = StringStatic.DELIVERY_POINT_TABLE)
+data class DeliveryPointEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
     var idRoute: Int = 0,

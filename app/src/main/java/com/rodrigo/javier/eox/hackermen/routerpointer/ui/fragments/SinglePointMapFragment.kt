@@ -15,6 +15,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.rodrigo.javier.eox.hackermen.routerpointer.R
 import com.rodrigo.javier.eox.hackermen.routerpointer.databinding.FragmentWholeRouteMapBinding
 import com.rodrigo.javier.eox.hackermen.routerpointer.viewmodels.WholeRouteViewModel
+import kotlinx.coroutines.InternalCoroutinesApi
 
 
 class SinglePointMapFragment : WholeRouteMapFragment() {

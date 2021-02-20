@@ -1,8 +1,6 @@
 package com.rodrigo.javier.eox.hackermen.routerpointer.ui.adapters
 
 import android.content.Context
-import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.rodrigo.javier.eox.hackermen.routerpointer.databinding.ItemPointBinding
-import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.DeliveryPoint
+import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.DeliveryPointEntity
 import com.rodrigo.javier.eox.hackermen.routerpointer.utilities.interfaces.ListenerWholeRoute
 
 class DeliveryListingAdapter(
-    private var list: MutableList<DeliveryPoint> = mutableListOf(),
+    private var list: MutableList<DeliveryPointEntity> = mutableListOf(),
     private val context: Context,
     private var listener: ListenerWholeRoute
 ) : RecyclerView.Adapter<DeliveryListingAdapter.BaseViewHolder<*>>() {
@@ -24,9 +22,9 @@ class DeliveryListingAdapter(
     }
 
     inner class MyOwnViewHolder(val binding: ItemPointBinding) :
-        BaseViewHolder<DeliveryPoint>(binding.root) {
+        BaseViewHolder<DeliveryPointEntity>(binding.root) {
 
-        override fun bind(item: DeliveryPoint) = with(binding) {
+        override fun bind(item: DeliveryPointEntity) = with(binding) {
             this.textViewAddress.text = item.street.toString().toUpperCase()
         }
     }
@@ -72,14 +70,14 @@ class DeliveryListingAdapter(
         return list.size
     }
 
-    fun setProductosEnLaVista(points: MutableList<DeliveryPoint>?) {
-        if (points != null) {
-            this.list = points
+    fun setProductosEnLaVista(pointEntities: MutableList<DeliveryPointEntity>?) {
+        if (pointEntities != null) {
+            this.list = pointEntities
             notifyDataSetChanged()
         }
     }
 
-    fun getProductos(position: Int): DeliveryPoint {
+    fun getProductos(position: Int): DeliveryPointEntity {
         return list[position]
     }
 
