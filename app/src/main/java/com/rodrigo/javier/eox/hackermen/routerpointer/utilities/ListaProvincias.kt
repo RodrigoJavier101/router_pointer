@@ -58,7 +58,8 @@ class ListaProvincias {
             ProvinciaEntity(50, "Antártica Chilena", 15),
             ProvinciaEntity(51, "Magallanes", 15),
             ProvinciaEntity(52, "Tierra del Fuego", 15),
-            ProvinciaEntity(53, "Última Esperanza", 15)
+            ProvinciaEntity(53, "Última Esperanza", 15),
+            ProvinciaEntity(54, "Marga Marga", 6),
         )
     }
 }

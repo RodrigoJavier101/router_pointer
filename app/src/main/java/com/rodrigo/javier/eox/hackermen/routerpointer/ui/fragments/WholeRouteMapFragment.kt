@@ -1,12 +1,16 @@
 package com.rodrigo.javier.eox.hackermen.routerpointer.ui.fragments
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.databinding.adapters.AdapterViewBindingAdapter.setSelection
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,13 +24,19 @@ import com.rodrigo.javier.eox.hackermen.routerpointer.R
 import com.rodrigo.javier.eox.hackermen.routerpointer.databinding.DialogLayoutBinding
 import com.rodrigo.javier.eox.hackermen.routerpointer.databinding.FragmentWholeRouteMapBinding
 import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.DeliveryPointEntity
+import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.RegionEntity
 import com.rodrigo.javier.eox.hackermen.routerpointer.ui.adapters.DeliveryListingAdapter
+import com.rodrigo.javier.eox.hackermen.routerpointer.utilities.ListaComunas
+import com.rodrigo.javier.eox.hackermen.routerpointer.utilities.ListaRegiones
 import com.rodrigo.javier.eox.hackermen.routerpointer.utilities.interfaces.ListenerWholeRoute
 import com.rodrigo.javier.eox.hackermen.routerpointer.viewmodels.WholeRouteViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
+import java.util.*
+import java.util.stream.Collector
+import java.util.stream.Collectors
+import kotlin.collections.ArrayList
 
 open class WholeRouteMapFragment : Fragment() ,
                                    ListenerWholeRoute {
@@ -96,6 +106,7 @@ open class WholeRouteMapFragment : Fragment() ,
 			}
 		}).attachToRecyclerView(binding.recyclerMainPage)
 		
+		
 		return binding.root
 	}
 	
@@ -107,12 +118,14 @@ open class WholeRouteMapFragment : Fragment() ,
 				adapter
 	}
 	
+	@SuppressLint("RestrictedApi")
 	override fun onViewCreated(view : View ,
 	                           savedInstanceState : Bundle?) {
 		super.onViewCreated(view ,
 		                    savedInstanceState)
 		navController =
 				Navigation.findNavController(view)
+		
 		binding.btnGuardarRutaCompleta.setOnClickListener {
 			navController.navigate(R.id.action_wholeRouteMapFragment_to_routesArchivesFragment2)
 		}
@@ -122,15 +135,58 @@ open class WholeRouteMapFragment : Fragment() ,
 					DialogLayoutBinding.inflate(layoutInflater)
 			val dialog =
 					BottomSheetDialog(requireContext());
-//            val view = layoutInflater.inflate(R.layout.dialog_layout, null);
 			val view =
 					_bindingDialog
-//            val close = view.findViewById<ImageView>(R.id.iv_close);
 			val close =
 					view !!.ivClose
-//            val btn = view.findViewById<Button>(R.id.btn_insertar_en_lista);
 			val btn =
 					view.btnInsertarEnLista
+			val regionesList =
+					ListaRegiones.regionesList
+							.stream()
+							.map { t ->
+								t.regionNombre
+							}
+							.collect(Collectors.toList()) as ArrayList
+			val comunasList =
+					ListaComunas.comunasList
+							.stream()
+							.map { t ->
+								t.comunaNombre
+							}
+							.collect(Collectors.toList()) as ArrayList
+			var arrayAdapterRegiones =
+					ArrayAdapter(requireContext() ,
+					             android.R.layout.simple_spinner_item ,
+					             regionesList)
+			var arrayAdapterComunas =
+					ArrayAdapter(requireContext() ,
+					             android.R.layout.simple_spinner_item ,
+					             comunasList)
+			// arrayAdapterRegiones.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+			bindingDialog !!.spinnerRegiones.adapter =
+					arrayAdapterRegiones
+			bindingDialog !!.spinnerComunas.adapter =
+					arrayAdapterComunas
+			
+			bindingDialog !!.spinnerRegiones.setSelection(
+					0 ,
+					false
+			                                             )
+			bindingDialog !!.spinnerComunas.setSelection(
+					0 ,
+					false
+			                                            )
+			// onItemSelectedListener = this@MainActivity
+			bindingDialog !!.spinnerRegiones.prompt =
+					"Region"
+			bindingDialog !!.spinnerRegiones.prompt =
+					"Comuna"
+			
+			bindingDialog !!.spinnerRegiones.gravity =
+					Gravity.CENTER
+			bindingDialog !!.spinnerComunas.gravity =
+					Gravity.CENTER
 			
 			close.setOnClickListener {
 				dialog.dismiss()
@@ -140,9 +196,9 @@ open class WholeRouteMapFragment : Fragment() ,
 			
 			btn.setOnClickListener {
 				deliveryPoint.street =
-						bindingDialog !!.inputAddress.text.toString()
+						bindingDialog !!.spinnerRegiones.toString()
 				deliveryPoint.phone =
-						bindingDialog !!.inputPhone.text.toString()
+						bindingDialog !!.spinnerComunas.toString()
 				if (deliveryPoint.street.isNullOrBlank()) {
 					Toast
 							.makeText(
