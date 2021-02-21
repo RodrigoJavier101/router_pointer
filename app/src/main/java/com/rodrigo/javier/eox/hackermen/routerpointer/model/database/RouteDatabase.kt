@@ -17,7 +17,7 @@ import kotlinx.coroutines.internal.synchronized
 			ProvinciaEntity::class ,
 			ComunaEntity::class
 		] ,
-		version = 4 ,
+		version = 1 ,
 		exportSchema = false
          )
 abstract class RouteDatabase : RoomDatabase() {
@@ -40,7 +40,7 @@ abstract class RouteDatabase : RoomDatabase() {
 										RouteDatabase::class.java ,
 										StringStatic.ROUTE_DATABASE
 								                )
-								.fallbackToDestructiveMigration()
+								// .fallbackToDestructiveMigration()
 								.build()
 				// }
 			}
