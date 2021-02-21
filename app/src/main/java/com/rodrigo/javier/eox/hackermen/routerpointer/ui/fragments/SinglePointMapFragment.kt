@@ -18,6 +18,7 @@ import com.rodrigo.javier.eox.hackermen.routerpointer.viewmodels.WholeRouteViewM
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
+@InternalCoroutinesApi
 class SinglePointMapFragment : WholeRouteMapFragment() {
 
     private var _binding: FragmentWholeRouteMapBinding? = null
@@ -28,6 +29,7 @@ class SinglePointMapFragment : WholeRouteMapFragment() {
     private lateinit var mMap: GoogleMap
     private var mapReady = false
 
+    @InternalCoroutinesApi
     private lateinit var model: WholeRouteViewModel
 
     override fun onCreateView(
