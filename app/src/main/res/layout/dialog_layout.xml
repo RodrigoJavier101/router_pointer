@@ -30,6 +30,15 @@
             android:textSize="20sp" />
 
         <Spinner
+            android:id="@+id/spinner_provincias"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:fontFamily="@font/robotomono_bold"
+            android:spinnerMode="dialog"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <Spinner
             android:id="@+id/spinner_comunas"
             android:layout_width="match_parent"
             android:layout_height="60dp"

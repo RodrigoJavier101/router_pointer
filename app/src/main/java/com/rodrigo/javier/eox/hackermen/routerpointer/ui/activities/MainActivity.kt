@@ -9,10 +9,11 @@ import com.rodrigo.javier.eox.hackermen.routerpointer.databinding.ActivityMainBi
 
 class MainActivity : AppCompatActivity() {
 	
-	private lateinit var binding: ActivityMainBinding
-	override fun onCreate(savedInstanceState: Bundle?) {
+	private lateinit var binding : ActivityMainBinding
+	override fun onCreate(savedInstanceState : Bundle?) {
 		super.onCreate(savedInstanceState)
-		binding = ActivityMainBinding.inflate(layoutInflater)
+		binding =
+				ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 	}
 }

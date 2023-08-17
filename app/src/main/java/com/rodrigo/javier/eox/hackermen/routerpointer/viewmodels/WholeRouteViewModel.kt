@@ -9,7 +9,6 @@ import com.rodrigo.javier.eox.hackermen.routerpointer.model.database.RouteDataba
 import com.rodrigo.javier.eox.hackermen.routerpointer.model.managers.RouteDatabaseManager
 import com.rodrigo.javier.eox.hackermen.routerpointer.model.database.RoutesDao
 import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.DeliveryPointEntity
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
 
 class WholeRouteViewModel(application: Application) : AndroidViewModel(application) {

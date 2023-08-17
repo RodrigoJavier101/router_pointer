@@ -45,4 +45,5 @@ interface RoutesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRegionList(comunaList: MutableList<RegionEntity>)
 
+    
 }

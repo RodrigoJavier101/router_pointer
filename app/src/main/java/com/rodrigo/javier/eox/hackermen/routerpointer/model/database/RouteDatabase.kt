@@ -6,20 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.rodrigo.javier.eox.hackermen.routerpointer.model.entities.*
 import com.rodrigo.javier.eox.hackermen.routerpointer.utilities.StringStatic
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.internal.synchronized
 
 @Database(
-		entities = [
-			RoutesEntity::class ,
-			DeliveryPointEntity::class ,
-			RegionEntity::class ,
-			ProvinciaEntity::class ,
-			ComunaEntity::class
-		] ,
-		version = 1 ,
-		exportSchema = false
-         )
+	entities = [RoutesEntity::class , DeliveryPointEntity::class , RegionEntity::class , ProvinciaEntity::class , ComunaEntity::class] ,
+	version = 1 , exportSchema = false)
 abstract class RouteDatabase : RoomDatabase() {
 	
 	abstract fun getDao() : RoutesDao
@@ -27,21 +17,15 @@ abstract class RouteDatabase : RoomDatabase() {
 	companion object {
 		
 		@Volatile
-		private var databaseInstance : RouteDatabase? =
-				null
+		private var databaseInstance : RouteDatabase? = null
 		
 		fun getDatabase(context : Context) : RouteDatabase {
 			if (databaseInstance == null) {
 				// synchronized(this) {
 				databaseInstance =
-						Room
-								.databaseBuilder(
-										context ,
-										RouteDatabase::class.java ,
-										StringStatic.ROUTE_DATABASE
-								                )
-								// .fallbackToDestructiveMigration()
-								.build()
+					Room.databaseBuilder(context , RouteDatabase::class.java , StringStatic.ROUTE_DATABASE)
+						// .fallbackToDestructiveMigration()
+						.build()
 				// }
 			}
 			return databaseInstance !!
@@ -62,8 +46,7 @@ abstract class RouteDatabase : RoomDatabase() {
 		}
 	}
 	
-	private val sLock =
-			Any()
+	private val sLock = Any()
 	// internal fun close() {
 	// 	synchronized(sLock) {
 	// 		databaseInstance
@@ -74,5 +57,5 @@ abstract class RouteDatabase : RoomDatabase() {
 	// 				}
 	// 	}
 	// }
-// }
+	// }
 }
